@@ -26,8 +26,9 @@
   <div class="row">
     
       <h2 class="text-center text-dark mt-5">Registration Form</h2>
+      <div id="error" class='row' >   </div>
       <div class="card my-5">      
-        <form class="card-body cardbody-color p-lg-5">
+        <div class="card-body cardbody-color p-lg-5">
         <div class="row">
           <div class="col-sm-6 form-group">
             <label for="name-f">First Name</label>
@@ -45,21 +46,21 @@
           </div>
           <div class="col-sm-6 form-group">
             <label for="address-1">Address Line-1</label>
-            <input type="address" class="form-control" name="Locality" id="address-1" placeholder="Locality/House/Street no." required>
+            <input class="form-control" name="Locality" id="address" placeholder="Locality/House/Street no." required>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4 form-group">
             <label for="State">State</label>
-            <input type="address" class="form-control" name="State" id="State" placeholder="Enter your state name." required>
+            <input class="form-control" name="State" id="state" placeholder="Enter your state name." required>
           </div>
           <div class="col-sm-2 form-group">
             <label for="zip">Postal-Code</label>
-            <input type="zip" class="form-control" name="Zip" id="zip" placeholder="Postal-Code." required>
+            <input class="form-control" name="Zip" id="zip" placeholder="Postal-Code." required>
           </div>
           <div class="col-sm-2 form-group">
             <label for="user_type">User Type</label>
-            <select class="form-control custom-select browser-default">
+            <select id="user_type" class="form-control custom-select browser-default">
               <option value='admin'> Admin </option>
               <option value='customer'> Customer</option>
 
@@ -69,7 +70,7 @@
         <div class="row">
           <div class="col-sm-6 form-group">
             <label for="Country">Country</label>
-            <select class="form-control custom-select browser-default">
+            <select id="country"class="form-control custom-select browser-default">
               <option value="Afghanistan">Afghanistan</option>
               <option value="Åland Islands">Åland Islands</option>
               <option value="Albania">Albania</option>
@@ -316,10 +317,7 @@
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
           </div>
-          <div class="col-sm-6 form-group">
-            <label for="Date">Date Of Birth</label>
-            <input type="Date" name="dob" class="form-control" id="Date" placeholder="" required>
-          </div>
+         
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
@@ -332,7 +330,7 @@
           </div>
           <div class="col-sm-2 form-group">
             <label for="cod">Country code</label>
-            <select class="form-control browser-default custom-select">
+            <select id="country_code"class="form-control browser-default custom-select">
               <option data-countryCode="US" value="1" selected>USA (+1)</option>
               <option data-countryCode="GB" value="44">UK (+44)</option>
 
@@ -559,7 +557,7 @@
         </div>
         <div class="col-sm-6 form-group">
           <label for="pass">Password</label>
-          <input type="Password" name="password" class="form-control" id="pass" placeholder="Enter your password." required>
+          <input type="Password" name="password" class="form-control" id="password" placeholder="Enter your password." required>
         </div>
         <div class="col-sm-6 form-group">
           <label for="pass2">Confirm Password</label>
@@ -569,16 +567,124 @@
           <input type="checkbox" class="form-check d-inline" id="chb" required><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
           </label>
         </div>
-        <div class="row">
-          <div class="col-md-10"></div>
-          <div class="col-sm-2 form-group mb-0 mt-2">
-
-            <button class="btn btn-dark" style="padding-left:20%;padding-right:20%">Submit</button>
-          </div>
+        <div class="row"> 
+          <div class="col-md-4"></div>
+          <div class="col-md-4"> <a  href=" <?= $this->config->base_url('login/index') ?>" >Already have an account </a></div>
+          <div class="col-md-4"></div>
 
         </div>
-      </form>
+        <div class="row mt-2" >
+          <div class="col-md-4"></div>
+          <div class="col-sm-4 form-group mb-0 mt-2">
+
+            <button onclick="register()" class="btn btn-dark" style="padding-left:20%;padding-right:20%">Submit</button>
+          </div>
+          <div class="col-md-4"></div>
+
+        </div>
+       
+</div>
     </div>
 
   </div>
 </div>
+
+<script>
+  function register(){
+    let name_f=$('#name-f').val();
+    let name_l=$('#name-l').val();
+    let email=$('#email').val();
+    let address=$('#address').val();
+    let state=$('#state').val();
+    let zip=$('#zip').val();
+    let user_type=$('#user_type').val();
+    let country=$('#country').val();
+    let country_code=$('#country_code').val();
+    let sex=$('#sex').val();
+    let tel=$('#tel').val();
+
+    let password=$('#password').val();
+
+    let pass2=$('#pass2').val();
+    let isSelected = $('#chb').is(':checked');
+    if(name_f==""||name_f==undefined){
+      showError('error','Please enter first name !!!!');
+    }
+   else if(name_l==""||name_l==undefined){
+      showError('error','Please enter last name !!!!');
+    }
+    else if(email==""||email==undefined){
+      showError('error','Please enter your email !!!!');
+    }
+    else if(address==""||address==undefined){
+      showError('error','Please enter your address !!!!');
+    }
+    else if(user_type==""||user_type==undefined){
+      showError('error','Please enter your user_type !!!!');
+    }
+    else if(country==""||country==undefined){
+      showError('error','Please enter your country !!!!');
+    }
+    else if(password==""||password==undefined){
+      showError('error','Please enter your password !!!!');
+    }
+    else if(pass2==""||pass2==undefined){
+      showError('error','Kindly confirm your password !!!!');
+    }
+    else if(sex==""||sex==undefined){
+      showError('error','Kindly enter your gender!!!!');
+    }
+    else if(pass2!==password){
+      showError('error','Password does not match !!!!');
+    }
+    else if(!isSelected){
+      showError('error','Kindly aggree to terms and condition!!!!');
+
+    }
+    else{
+      if (confirm('Are you sure you want to submit the form?')) {
+          // If the user confirms, submit the form using AJAX
+          $.ajax({
+            url: "<?=$this->config->base_url('login/register_user') ?>",
+            type: 'POST',
+            data: {
+              last_name:name_l,
+              first_name:name_f,
+              email:email,
+              Address:address,
+              Gender:sex,
+              State:state,
+              postal_code:zip,
+              user_type:user_type,
+              country:country,
+              country_code:country_code,
+              contact:tel,
+              password:password
+            },  
+            success: function(response) {
+              res=JSON.parse(response);
+              if(res.msg=='success'){
+
+                showSuccess('error','User Registered Successfully !!!')            
+                }
+              else {
+                showError('error','Please try again later !!!!');
+
+              }
+            },
+            error: function() {
+              showError('error','An error occurred while submitting the form !!!!');
+
+            }
+          });
+        }
+    }
+
+    
+
+
+
+
+
+  }
+</script>

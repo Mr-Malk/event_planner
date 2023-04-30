@@ -3,7 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	
+	public function __construct() {
+        parent::__construct();
+
+        // Initialization tasks go here
+        $this->load->model('Login_model');
+    }
 	public function index()
 	{
 		session_start();
@@ -19,5 +24,18 @@ class Login extends CI_Controller {
 
 		$this->load->view('signup_view');
 		$this->load->view('footer');
+	}
+	public function register_user(){
+		if($this->input->post()){
+			$inputs=$this->input->post();
+			$row=$this->Login_model->save_user($inputs);
+			if($row){
+				echo json_encode(['msg'=>'success']);
+			}
+			else {
+				echo json_encode(['msg'=>'error']);
+
+			}
+		}
 	}
 }
