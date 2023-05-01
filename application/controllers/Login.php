@@ -7,6 +7,7 @@ class Login extends CI_Controller {
         parent::__construct();
 
         // Initialization tasks go here
+		$this->load->library('session');
 
         $this->load->model('Login_model');
     }
@@ -52,14 +53,27 @@ class Login extends CI_Controller {
 			}
 			else {
 				foreach($row as $r){
-					$data=array('firstname'=>$r->first_name);
+					$data=array('firstname'=>$r->first_name,
+				'id'=>$r->id,
+			'user_type'=>$r->user_type,
+			'country'=>$r->country,
+			'email'=>$r->email
+
+		
+			);
 				}
-				$this->session->set_userdata($data);		
+				$_SESSION['user_data']=$data;
+				//$this->session->set_userdata($data);		
 				echo json_encode(['msg'=>'success']);
 
 			
 			}
 
 		}
+	}
+	public function sign_out(){
+		unset($_SESSION['user_data']);
+		header('Location: '.$this->config->base_url('login/index'));
+exit;
 	}
 }

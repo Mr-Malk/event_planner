@@ -6,8 +6,8 @@
   }
 
   .profile-image-pic {
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
     object-fit: cover;
   }
 
@@ -39,8 +39,8 @@
           <div class="mb-3">
             <input type="password" class="form-control" id="password" placeholder="password">
           </div>
-          <div class="text-center"><button onclick="login()" class="btn btn-dark px-5 mb-5 w-100">Login</button></div>
-          <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not
+          <div class="text-center"><button onclick="login()" class="btn btn-dark px-5 mb-3 w-100">Login</button></div>
+          <div id="emailHelp" class="form-text text-center mb-3 text-dark">Not
             Registered? <a href=" <?= $this->config->base_url('login/sign_up') ?>" class="text-dark fw-bold"> Create an
               Account</a>
           </div>

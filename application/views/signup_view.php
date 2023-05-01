@@ -8,7 +8,7 @@
     background-color: #ebf2fa;
   }
 
- 
+
   .mx-t3 {
     margin-top: -3rem;
   }
@@ -18,17 +18,16 @@
     color: #fff;
 
   }
-  
 </style>
 
 
 <div class="container">
   <div class="row">
-    
-      <h2 class="text-center text-dark mt-5">Registration Form</h2>
-      <div id="error" class='row' >   </div>
-      <div class="card my-5">      
-        <div class="card-body cardbody-color p-lg-5">
+
+    <h2 class="text-center text-dark mt-5">Registration Form</h2>
+    <div id="error" class='row'> </div>
+    <div class="card my-5">
+      <div class="card-body cardbody-color p-lg-5">
         <div class="row">
           <div class="col-sm-6 form-group">
             <label for="name-f">First Name</label>
@@ -58,7 +57,7 @@
             <label for="zip">Postal-Code</label>
             <input class="form-control" name="Zip" id="zip" placeholder="Postal-Code." required>
           </div>
-          <div class="col-sm-2 form-group">
+          <div class="col-sm-6 form-group">
             <label for="user_type">User Type</label>
             <select id="user_type" class="form-control custom-select browser-default">
               <option value='admin'> Admin </option>
@@ -70,7 +69,7 @@
         <div class="row">
           <div class="col-sm-6 form-group">
             <label for="Country">Country</label>
-            <select id="country"class="form-control custom-select browser-default">
+            <select id="country" class="form-control custom-select browser-default">
               <option value="Afghanistan">Afghanistan</option>
               <option value="Åland Islands">Åland Islands</option>
               <option value="Albania">Albania</option>
@@ -317,7 +316,7 @@
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
           </div>
-         
+
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
@@ -330,7 +329,7 @@
           </div>
           <div class="col-sm-2 form-group">
             <label for="cod">Country code</label>
-            <select id="country_code"class="form-control browser-default custom-select">
+            <select id="country_code" class="form-control browser-default custom-select">
               <option data-countryCode="US" value="1" selected>USA (+1)</option>
               <option data-countryCode="GB" value="44">UK (+44)</option>
 
@@ -567,13 +566,13 @@
           <input type="checkbox" class="form-check d-inline" id="chb" required><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
           </label>
         </div>
-        <div class="row"> 
+        <div class="row">
           <div class="col-md-4"></div>
-          <div class="col-md-4"> <a  href=" <?= $this->config->base_url('login/index') ?>" >Already have an account </a></div>
+          <div class="col-md-4"> <a href=" <?= $this->config->base_url('login/index') ?>">Already have an account </a></div>
           <div class="col-md-4"></div>
 
         </div>
-        <div class="row mt-2" >
+        <div class="row mt-2">
           <div class="col-md-4"></div>
           <div class="col-sm-4 form-group mb-0 mt-2">
 
@@ -582,105 +581,93 @@
           <div class="col-md-4"></div>
 
         </div>
-       
-</div>
+
+      </div>
     </div>
 
   </div>
 </div>
 
 <script>
-  function register(){
-    let name_f=$('#name-f').val();
-    let name_l=$('#name-l').val();
-    let email=$('#email').val();
-    let address=$('#address').val();
-    let state=$('#state').val();
-    let zip=$('#zip').val();
-    let user_type=$('#user_type').val();
-    let country=$('#country').val();
-    let country_code=$('#country_code').val();
-    let sex=$('#sex').val();
-    let tel=$('#tel').val();
+  function register() {
+    let name_f = $('#name-f').val();
+    let name_l = $('#name-l').val();
+    let email = $('#email').val();
+    let address = $('#address').val();
+    let state = $('#state').val();
+    let zip = $('#zip').val();
+    let user_type = $('#user_type').val();
+    let country = $('#country').val();
+    let country_code = $('#country_code').val();
+    let sex = $('#sex').val();
+    let tel = $('#tel').val();
 
-    let password=$('#password').val();
+    let password = $('#password').val();
 
-    let pass2=$('#pass2').val();
+    let pass2 = $('#pass2').val();
     let isSelected = $('#chb').is(':checked');
-    if(name_f==""||name_f==undefined){
-      showError('error','Please enter first name !!!!');
-    }
-   else if(name_l==""||name_l==undefined){
-      showError('error','Please enter last name !!!!');
-    }
-    else if(email==""||email==undefined){
-      showError('error','Please enter your email !!!!');
-    }
-    else if(address==""||address==undefined){
-      showError('error','Please enter your address !!!!');
-    }
-    else if(user_type==""||user_type==undefined){
-      showError('error','Please enter your user_type !!!!');
-    }
-    else if(country==""||country==undefined){
-      showError('error','Please enter your country !!!!');
-    }
-    else if(password==""||password==undefined){
-      showError('error','Please enter your password !!!!');
-    }
-    else if(pass2==""||pass2==undefined){
-      showError('error','Kindly confirm your password !!!!');
-    }
-    else if(sex==""||sex==undefined){
-      showError('error','Kindly enter your gender!!!!');
-    }
-    else if(pass2!==password){
-      showError('error','Password does not match !!!!');
-    }
-    else if(!isSelected){
-      showError('error','Kindly aggree to terms and condition!!!!');
+    if (name_f == "" || name_f == undefined) {
+      showError('error', 'Please enter first name !!!!');
+    } else if (name_l == "" || name_l == undefined) {
+      showError('error', 'Please enter last name !!!!');
+    } else if (email == "" || email == undefined) {
+      showError('error', 'Please enter your email !!!!');
+    } else if (address == "" || address == undefined) {
+      showError('error', 'Please enter your address !!!!');
+    } else if (user_type == "" || user_type == undefined) {
+      showError('error', 'Please enter your user_type !!!!');
+    } else if (country == "" || country == undefined) {
+      showError('error', 'Please enter your country !!!!');
+    } else if (password == "" || password == undefined) {
+      showError('error', 'Please enter your password !!!!');
+    } else if (pass2 == "" || pass2 == undefined) {
+      showError('error', 'Kindly confirm your password !!!!');
+    } else if (sex == "" || sex == undefined) {
+      showError('error', 'Kindly enter your gender!!!!');
+    } else if (pass2 !== password) {
+      showError('error', 'Password does not match !!!!');
+    } else if (!isSelected) {
+      showError('error', 'Kindly aggree to terms and condition!!!!');
 
-    }
-    else{
+    } else {
       if (confirm('Are you sure you want to submit the form?')) {
-          // If the user confirms, submit the form using AJAX
-          $.ajax({
-            url: "<?=$this->config->base_url('login/register_user') ?>",
-            type: 'POST',
-            data: {
-              last_name:name_l,
-              first_name:name_f,
-              email:email,
-              Address:address,
-              Gender:sex,
-              State:state,
-              postal_code:zip,
-              user_type:user_type,
-              country:country,
-              country_code:country_code,
-              contact:tel,
-              password:password
-            },  
-            success: function(response) {
-              res=JSON.parse(response);
-              if(res.msg=='success'){
+        // If the user confirms, submit the form using AJAX
+        $.ajax({
+          url: "<?= $this->config->base_url('login/register_user') ?>",
+          type: 'POST',
+          data: {
+            last_name: name_l,
+            first_name: name_f,
+            email: email,
+            Address: address,
+            Gender: sex,
+            State: state,
+            postal_code: zip,
+            user_type: user_type,
+            country: country,
+            country_code: country_code,
+            contact: tel,
+            password: password
+          },
+          success: function(response) {
+            res = JSON.parse(response);
+            if (res.msg == 'success') {
 
-                showSuccess('error','User Registered Successfully !!!')            
-                }
-              else {
-                showError('error','Please try again later !!!!');
-
-              }
-            },
-            error: function() {
-              showError('error','An error occurred while submitting the form !!!!');
+              showSuccess('error', 'User Registered Successfully !!!')
+            } else {
+              showError('error', 'Please try again later !!!!');
 
             }
-          });
-        }
+          },
+          error: function() {
+            showError('error', 'An error occurred while submitting the form !!!!');
+
+          }
+        });
+      }
     }
 
-    
+
 
 
 
