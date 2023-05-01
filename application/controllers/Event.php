@@ -76,6 +76,7 @@ $data['events']=$events;
 			exit;
 		}
 	}
+	
 	public function add_event()
 	{
 		if (!empty($_SESSION['user_data']) && $_SESSION['user_data']['user_type'] == 'admin') {
@@ -97,6 +98,26 @@ $data['events']=$events;
 			if ($this->input->post()) {
 				$inputs = $this->input->post();
 				$row = $this->Event_model->create_event($inputs);
+				if ($row) {
+					echo json_encode(['msg' => 'success']);
+				} else {
+					echo json_encode(['msg' => 'error']);
+				}
+			} else {
+				echo json_encode(['msg' => 'error']);
+			}
+		} else {
+			header('Location: ' . $this->config->base_url('login/index'));
+			exit;
+		}
+	}
+	public function update_event()
+	{
+		if (!empty($_SESSION['user_data']) && $_SESSION['user_data']['user_type'] == 'admin') {
+
+			if ($this->input->post()) {
+				$inputs = $this->input->post();
+				$row = $this->Event_model->update_event($inputs);
 				if ($row) {
 					echo json_encode(['msg' => 'success']);
 				} else {

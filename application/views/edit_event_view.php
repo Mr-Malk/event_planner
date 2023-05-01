@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-dark" style="margin-top:3%;padding-left:2%;padding-right:2%;float:right;" onclick="submitForm()">Add Event </button>
+                <button class="btn btn-dark" style="margin-top:3%;padding-left:2%;padding-right:2%;float:right;" onclick="submitForm()">Update Event </button>
             </div>
         </div>
 
@@ -114,9 +114,10 @@
             if (confirm('Are you sure you want to submit the form?')) {
                 // If the user confirms, submit the form using AJAX
                 $.ajax({
-                    url: "<?= $this->config->base_url('event/add_new_event') ?>",
+                    url: "<?= $this->config->base_url('event/update_event') ?>",
                     type: 'POST',
                     data: {
+                        event_id:event_id,
                         title: title,
                         customerID: customerID,
                         category: category,
@@ -131,7 +132,7 @@
                         res = JSON.parse(response);
                         if (res.msg == 'success') {
 
-                            showSuccess('error', 'Event Created Successfully !!!')
+                            showSuccess('error', 'Event Updated Successfully !!!')
                         } else {
                             showError('error', 'Please try again later !!!!');
 

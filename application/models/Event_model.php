@@ -50,6 +50,11 @@ class Event_model extends CI_Model
             return false;
         }
     }
+    public function update_event($data){
+        $id=$data['event_id'];
+        $this->db->where_in('id', $id);
+$this->db->update_batch('tbl-events', $data, 'id');
+    }
     public function get_customers()
     {
         $this->db->select('*');
