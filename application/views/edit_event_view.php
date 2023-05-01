@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <h2 class="text-center text-dark mt-3">Add New Event</h2>
+        <h2 class="text-center text-dark mt-3">Edit Event</h2>
 
         <div id="error" class='row'> </div>
         <div class="card">

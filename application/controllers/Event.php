@@ -15,37 +15,34 @@ class Event extends CI_Controller
 
 	public function index()
 	{
-			$row = $this->Event_model->get_event_data();
-			$events=array();
-			if(empty($_SESSION['user_data'])){
-				foreach($row as $r){
-					if($r->customerID==0){
-						array_push($events,$r);
-					}
+		$row = $this->Event_model->get_event_data();
+		$events = array();
+		if (empty($_SESSION['user_data'])) {
+			foreach ($row as $r) {
+				if ($r->customerID == 0) {
+					array_push($events, $r);
 				}
 			}
-			else {
+		} else {
 
-				if($_SESSION['user_data']['user_type']=='customer'){
-					foreach($row as $r){
-						if($r->customerID==$_SESSION['user_data']['id']){
-							array_push($events,$r);
-						}
+			if ($_SESSION['user_data']['user_type'] == 'customer') {
+				foreach ($row as $r) {
+					if ($r->customerID == $_SESSION['user_data']['id']) {
+						array_push($events, $r);
 					}
 				}
-				else {
-					$events=$row;
-				}
+			} else {
+				$events = $row;
 			}
-			$users = $this->Event_model->get_all_users();
+		}
+		$users = $this->Event_model->get_all_users();
 
-			$data['users']=$users;
-$data['events']=$events;
-			$this->load->view('header');
+		$data['users'] = $users;
+		$data['events'] = $events;
+		$this->load->view('header');
 
-			$this->load->view('event_list',$data);
-			$this->load->view('footer');
-		
+		$this->load->view('event_list', $data);
+		$this->load->view('footer');
 	}
 	public function edit_event($id)
 	{
@@ -53,30 +50,50 @@ $data['events']=$events;
 			$event = $this->Event_model->get_specific_event($id);
 			$row = $this->Event_model->get_customers();
 			$data['customer'] = $row;
-			$data['events']=$event;
+			$data['events'] = $event;
 
 			$this->load->view('header');
 
-			$this->load->view('edit_event_view',$data);
+			$this->load->view('edit_event_view', $data);
 			$this->load->view('footer');
 		} else {
 			header('Location: ' . $this->config->base_url('login/index'));
 			exit;
 		}
 	}
-	public function view_event()
+	public function view_event($id)
 	{
 		if (!empty($_SESSION['user_data']) && $_SESSION['user_data']['user_type'] == 'admin') {
 
+			$event = $this->Event_model->get_specific_event($id);
+			$row = $this->Event_model->get_customers();
+			$data['customer'] = $row;
+			$data['events'] = $event;
 			$this->load->view('header');
-			$this->load->view('event_view');
+			$this->load->view('event_view',$data);
 			$this->load->view('footer');
 		} else {
 			header('Location: ' . $this->config->base_url('login/index'));
 			exit;
 		}
 	}
-	
+	public function delete_event($id)
+	{
+		if (!empty($_SESSION['user_data']) && $_SESSION['user_data']['user_type'] == 'admin') {
+
+			$event = $this->Event_model->delete_event($id);
+
+			if($event){
+				header('Location: ' . $this->config->base_url('event/index'));
+				exit;
+			}
+			
+		} else {
+			header('Location: ' . $this->config->base_url('login/index'));
+			exit;
+		}
+	}
+
 	public function add_event()
 	{
 		if (!empty($_SESSION['user_data']) && $_SESSION['user_data']['user_type'] == 'admin') {
@@ -130,5 +147,13 @@ $data['events']=$events;
 			header('Location: ' . $this->config->base_url('login/index'));
 			exit;
 		}
+	}
+	function book_event(){
+		header('Location: ' . $this->config->base_url('event/index'));
+
+	}
+	function discount_event(){
+		header('Location: ' . $this->config->base_url('event/index'));
+
 	}
 }

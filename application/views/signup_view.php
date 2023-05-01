@@ -62,6 +62,8 @@
             <select id="user_type" class="form-control custom-select browser-default">
               <option value='admin'> Admin </option>
               <option value='customer'> Customer</option>
+              <option value='manager'> Manager</option>
+
 
             </select>
           </div>
