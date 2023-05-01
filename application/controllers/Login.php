@@ -7,11 +7,11 @@ class Login extends CI_Controller {
         parent::__construct();
 
         // Initialization tasks go here
+
         $this->load->model('Login_model');
     }
 	public function index()
 	{
-		session_start();
 		
         $this->load->view('header');
 
@@ -36,6 +36,30 @@ class Login extends CI_Controller {
 				echo json_encode(['msg'=>'error']);
 
 			}
+		}
+		else {
+			echo json_encode(['msg'=>'error']);
+		}
+	}
+	public function authentication(){
+		if($this->input->post()){
+			
+			$inputs=$this->input->post();
+			$row=$this->Login_model->authenticate($inputs);
+			if($row==false){
+				echo json_encode(['msg'=>'error']);
+
+			}
+			else {
+				foreach($row as $r){
+					$data=array('firstname'=>$r->first_name);
+				}
+				$this->session->set_userdata($data);		
+				echo json_encode(['msg'=>'success']);
+
+			
+			}
+
 		}
 	}
 }
