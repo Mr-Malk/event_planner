@@ -68,7 +68,11 @@
 
                             <td><?= $r->discount ?></td>
                             <td>
-                                <?php if ($_SESSION['user_data']['user_type'] == 'admin') { ?>
+                                <?php 
+                                if(isset($_SESSION['user_data'])){
+
+                             
+                                if ($_SESSION['user_data']['user_type'] == 'admin') { ?>
                                     <a href="#" class="add">Add</a>
 
                                     <a href="#" class="view">View</a>
@@ -79,7 +83,13 @@
                                 <?php  } else if ($_SESSION['user_data']['user_type'] == 'Manager') { ?>
                                     <a href="#" class="discount">Apply Discount</a>
 
-                                <?php } ?>
+                                <?php } 
+                                   }
+                                   else { ?>
+                                    <a href="#" class="book">Book Now</a>
+
+                                  <?php }
+                                ?>
                             </td>
                         </tr>
                         <?php endforeach ?>
@@ -100,7 +110,7 @@
             columnDefs: [{
                 targets: -1,
                 render: function(data, type, full, meta) {
-
+<?php if(isset($_SESSION['user_data']['user_type'] )) {?>
                     if ("<?= $_SESSION['user_data']['user_type'] ?>" == 'admin') {
 
                         return '<a style="margin-right: 2%;" href="<?= $this->config->base_url('event/add_event') ?>"  class="add btn btn-sm btn-outline-secondary"><i class="fas fa-plus"> </i></a>'+ 
@@ -116,6 +126,10 @@
                         return '<a style="margin-right: 5%;" href="#"  class="book btn btn-sm btn-outline-secondary">Book Now</a>';
 
                     }
+                <?php } else {?>
+                    return '<a style="margin-right: 5%;" href="#"  class="book btn btn-sm btn-outline-secondary">Book Now</a>';
+
+                    <?php }?>
                 }
             }]
         });

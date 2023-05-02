@@ -48,12 +48,17 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav mr-2">
-        <?php if ($this->router->class !== "login") { ?>
+        <li class="nav-item active">
+          <a class="nav-link text-light" href=" <?= $this->config->base_url('home/index') ?>">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <?php 
+         if ($this->router->class !== "login" &&  !(isset($_SESSION['user_data']))) { ?>
 
-          <li class="nav-item active">
-            <a class="nav-link text-light" href=" <?= $this->config->base_url('login/index') ?>">Login <span class="sr-only">(current)</span></a>
+          <li class="nav-item ">
+            <a class="nav-link text-light" href=" <?= $this->config->base_url('login/index') ?>">Login </a>
           </li>
         <?php } ?>
+
         <li class="nav-item">
           <a class="nav-link text-light" href=" <?= $this->config->base_url('About/index') ?>">About Us</a>
         </li>
@@ -65,7 +70,7 @@
             <a class="nav-link text-light" href=" <?= $this->config->base_url('event/add_event') ?>">Add New Event</a>
           </li>
         <?php } ?>
-        <?php if ($this->router->class !== "login") { ?>
+        <?php if (isset($_SESSION['user_data']) && $this->router->class !== "login") { ?>
 
           <li class="nav-item">
             <a class="nav-link text-light" href=" <?= $this->config->base_url('login/sign_out') ?>">Sign Out</a>
